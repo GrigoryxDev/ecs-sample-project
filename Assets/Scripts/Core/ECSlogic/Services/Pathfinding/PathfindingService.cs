@@ -32,7 +32,7 @@ namespace Core.ECSlogic.Services.Pathfinding
             return resultPath;
         }
 
-        public List<PathSearchTile> FindPath(Vector2Int startGridPos, Vector2Int endGridPos)
+        private List<PathSearchTile> FindPath(Vector2Int startGridPos, Vector2Int endGridPos)
         {
             searchableTiles ??= GetSearchableTiles();
 

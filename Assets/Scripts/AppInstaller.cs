@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Core.ECSlogic.Interfaces.Services;
+using Core.WorldBuilders;
 using UnityEngine;
 using Zenject;
 
 public class AppInstaller : MonoInstaller
 {
     [SerializeField] private UIHolder uIHolder;
+    [SerializeField] private EcsEngine ecsEngine;
 
     public override void InstallBindings()
     {
@@ -23,6 +25,7 @@ public class AppInstaller : MonoInstaller
 
         Container.Bind<IRandomService>().To<RandomService>().AsSingle().NonLazy();
 
+        Container.Bind<IEcsEngine>().FromInstance(ecsEngine).AsSingle().NonLazy();
 
         Container.BindInstance(uIHolder).AsSingle().NonLazy();
 

@@ -13,5 +13,10 @@ namespace Core.ECSGameView.Helpers
         {
             return new System.Numerics.Vector2(position.x, position.y);
         }
+
+        public static ECSlogic.Extensions.Vector2Int AdaptToExtensionVector2Int(this Vector2Int position)
+        {
+            return new ECSlogic.Extensions.Vector2Int(position.x, position.y);
+        }
     }
 }

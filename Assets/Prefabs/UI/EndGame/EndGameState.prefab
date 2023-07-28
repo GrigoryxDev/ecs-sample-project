@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2675035654120545513}
   - component: {fileID: 2675035654120545514}
+  - component: {fileID: 2332766341767420592}
   m_Layer: 5
   m_Name: EndGameState
   m_TagString: Untagged
@@ -47,6 +48,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2675035654120545512}
   m_CullTransparentMesh: 1
+--- !u!114 &2332766341767420592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2675035654120545512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8525996b967840ee95ea0707eebd656, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  restartButton: {fileID: 7169002563921088840}
 --- !u!1 &5898682467267626834
 GameObject:
   m_ObjectHideFlags: 0

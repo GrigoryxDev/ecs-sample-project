@@ -9,14 +9,12 @@ public interface IElementAnalyzeService
 public class ElementAnalyzeService : IElementAnalyzeService
 {
     private readonly GameModel gameModel;
-    private readonly IQuestDynamicService questDynamicService;
     private readonly IElementStaticService elementStaticService;
 
-    public ElementAnalyzeService(GameModel gameModel, IQuestDynamicService questDynamicService,
+    public ElementAnalyzeService(GameModel gameModel,
     IElementStaticService elementStaticService)
     {
         this.gameModel = gameModel;
-        this.questDynamicService = questDynamicService;
         this.elementStaticService = elementStaticService;
     }
 

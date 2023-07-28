@@ -14,7 +14,6 @@ namespace Core.ECSGameView.Services
     {
         private IRandomService randomService;
 
-
         [SerializeField] private Tilemap tilemap;
 
         private readonly Dictionary<Vector2IntNum, Vector2Num> movablePositionMap = new();
