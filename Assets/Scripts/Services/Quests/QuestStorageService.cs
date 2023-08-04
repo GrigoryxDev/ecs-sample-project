@@ -10,13 +10,13 @@ public interface IQuestStorageService
 
 public class QuestStorageService : IQuestStorageService
 {
-    private readonly Dictionary<int, QuestBaseModel> elementModels;
-    private int[] allElementIds;
+    private readonly Dictionary<int, QuestBaseModel> questsModels;
+    private int[] allQuestsIds;
 
     public QuestStorageService()
     {
         //Could be loaded from DB or etc
-        elementModels = new Dictionary<int, QuestBaseModel>
+        questsModels = new Dictionary<int, QuestBaseModel>
         {
             {
                 0,
@@ -29,12 +29,12 @@ public class QuestStorageService : IQuestStorageService
         };
 
 
-        allElementIds = elementModels.Keys.ToArray();
+        allQuestsIds = questsModels.Keys.ToArray();
     }
 
     public bool GetQuestModel(int id, out QuestBaseModel elementModel)
     {
-        var result = elementModels.TryGetValue(id, out elementModel);
+        var result = questsModels.TryGetValue(id, out elementModel);
         if (!result)
         {
             Debug.LogError($"Element {id} not found");
@@ -42,6 +42,6 @@ public class QuestStorageService : IQuestStorageService
         return result;
     }
 
-    public int[] GetAllQuestIds() => allElementIds;
+    public int[] GetAllQuestIds() => allQuestsIds;
 }
 

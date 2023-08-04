@@ -10,7 +10,8 @@ public class ElementsWorldStorage : ScriptableObject
 
     public AssetReference GetSpriteRef(int id)
     {
-        //TODO: test
         return sprites[id];
     }
+
+    public AssetReferenceSprite[] GetAllSprites() => sprites;
 }

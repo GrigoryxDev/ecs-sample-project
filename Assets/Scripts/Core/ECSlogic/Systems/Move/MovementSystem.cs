@@ -18,7 +18,7 @@ namespace Core.ECSlogic.Systems
                 ref var mapElement = ref movableMapElements.Pools.Inc1.Get(item);
                 ref var moveTarget = ref movableMapElements.Pools.Inc2.Get(item);
 
-                const float speed = 1f;
+                const float speed = 10f;
                 mapElement.WorldPosition = PositionHelper.MoveTowards(mapElement.WorldPosition, moveTarget.WorldPosition, speed * moveTarget.CurrentT);
 
                 const float deltaT = 0.0166667f;

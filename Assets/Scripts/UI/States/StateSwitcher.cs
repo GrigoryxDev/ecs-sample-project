@@ -23,7 +23,6 @@ public class StateSwitcher : MonoBehaviour
     
     public void ChangeState(GameStates newState)
     {
-        //TODO: test all states exists
         var states = statesStorage.GetAllStates();
         var stateModel = states.FirstOrDefault(s => s.State == newState);
 
