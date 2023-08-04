@@ -17,16 +17,19 @@ namespace Core.ECSlogic.Services.Pathfinding
 
         private Dictionary<Vector2Int, PathSearchTile> searchableTiles;
 
-
         public List<Vector2Int> GetPath(Vector2Int startGridPosition, Vector2Int targetGridPosition)
         {
             var resultPath = new List<Vector2Int>();
-
-            var tilesPath = FindPath(startGridPosition, targetGridPosition);
-
-            foreach (var tile in tilesPath)
+            
+            if (movablePositionsService.IsMovableGridPosition(startGridPosition) &&
+            movablePositionsService.IsMovableGridPosition(targetGridPosition))
             {
-                resultPath.Add(tile.GridLocation);
+                var tilesPath = FindPath(startGridPosition, targetGridPosition);
+
+                foreach (var tile in tilesPath)
+                {
+                    resultPath.Add(tile.GridLocation);
+                }
             }
 
             return resultPath;
@@ -54,7 +57,8 @@ namespace Core.ECSlogic.Services.Pathfinding
                     return GetFinishedList(start, end);
                 }
 
-                foreach (var tile in GetNeighborPathSearchTiles(currentPathSearchTile))
+                var neighbors = GetNeighborPathSearchTiles(currentPathSearchTile);
+                foreach (var tile in neighbors)
                 {
                     if (closedList.Contains(tile))
                     {

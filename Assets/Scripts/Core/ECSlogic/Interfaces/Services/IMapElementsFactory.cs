@@ -1,4 +1,5 @@
-using Core.ECSGameView.UnityComponents;
+using Core.ECSGameView.UnityComponentsBridge;
+using Core.ECSGameView.Services;
 
 namespace Core.ECSlogic.Interfaces.Services
 {

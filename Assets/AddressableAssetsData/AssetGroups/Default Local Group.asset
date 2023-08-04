@@ -16,15 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 020352b79b582449a875503b0bddf817
-  m_SerializeEntries:
-  - m_GUID: 52d3054d4dde44d019c1b37b83dd524b
-    m_Address: Assets/Prefabs/UI/EndGameState.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: f12cb7b05e18b469f8defe596c67a5b7
-    m_Address: Assets/Prefabs/UI/GameState.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 955900a703b594d3d8256d5bd04b60c1, type: 2}
   m_SchemaSet:

@@ -1,5 +1,7 @@
-﻿using Core.ECSlogic.Models;
+﻿using Core.ECSlogic.Interfaces.Services;
+using Core.ECSlogic.Models;
 using Core.ECSlogic.Services;
+using Core.ECSlogic.Services.Pathfinding;
 using Core.ECSlogic.Systems;
 using Core.WorldBuilders;
 using Leopotam.EcsLite;
@@ -9,10 +11,10 @@ namespace Core.ECSlogic
 {
     public class LogicECSWorker : BaseECSWorker
     {
-        private readonly WorldModel worldModel;
+        private readonly EcsWorldModel worldModel;
         private readonly InitLogicServices initServices;
 
-        public LogicECSWorker(WorldModel worldModel, InitLogicServices initServices)
+        public LogicECSWorker(EcsWorldModel worldModel, InitLogicServices initServices)
         {
             this.worldModel = worldModel;
             this.initServices = initServices;
@@ -20,7 +22,12 @@ namespace Core.ECSlogic
 
         public override void InitSystems(IEcsSystems systems)
         {
+            IPathfindingService pathfindingService = 
+            new PathfindingService(initServices.MovablePositionsService);
+            
             systems
+            .Add(new EndGameObservableSystem())
+            
             .Add(new RestartSystem())
 
             .Add(new PlayersResetSystem())
@@ -39,13 +46,15 @@ namespace Core.ECSlogic
             .Add(new ElementObservableSystem())
 
 
-            .Inject(worldModel, initServices.RandomService,
+            .Inject(worldModel, pathfindingService, initServices.RandomService,
               initServices.QuestDynamicService, initServices.ElementAnalyzeService,
               initServices.MovablePositionsService,
+              initServices.ReadOnlyGameModel,
               new MapElementsService(world, initServices),
               new MapElementsBuilder(world, initServices),
               new RandomCollectableBuilder(world, initServices),
               new MapPositionsService(world, initServices))
+
             .Init();
         }
     }

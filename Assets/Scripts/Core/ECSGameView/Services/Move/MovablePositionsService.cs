@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Zenject;
 
+
 using Vector2Num = System.Numerics.Vector2;
 using Vector2IntNum = Core.ECSlogic.Extensions.Vector2Int;
 
@@ -26,6 +27,8 @@ namespace Core.ECSGameView.Services
         "tileGrass_roadCornerUR","tileGrass_roadCrossing","tileGrass_roadCrossingRound",
         "tileGrass_roadEast","tileGrass_roadNorth","tileGrass_roadSplitE",
         "tileGrass_roadSplitN","tileGrass_roadSplitS","tileGrass_roadSplitW"};
+
+        public bool IsInited { get; private set; }
 
         [Inject]
         public void Constructor(IRandomService randomService)
@@ -50,6 +53,7 @@ namespace Core.ECSGameView.Services
                     allGridPositions.Add(gridPosition);
                 }
             }
+            IsInited = true;
         }
 
         public List<Vector2IntNum> GetAllGridPositions()

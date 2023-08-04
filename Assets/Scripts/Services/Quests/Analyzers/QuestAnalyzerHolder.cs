@@ -1,5 +1,3 @@
-//An abstract class is better suited than an interface for a future extension
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: World
+  m_EditorClassIdentifier: 
+  m_GroupName: World
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 3e350997df5b948aeb4c6d5c8df2a2e9
+  m_SerializeEntries:
+  - m_GUID: 8e48f8824aa4e40658bd2c40968b934f
+    m_Address: Assets/Prefabs/World/Player.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c2bc7a202b83046db96a2fcaf84c95b1
+    m_Address: Assets/Prefabs/World/CollectedObj.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f40d4aae2f78846b1bdb0c05e7361b5e
+    m_Address: Assets/Sprites/barrelGreen_side.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c0c4e113065114aeba30df13a2bc9eda
+    m_Address: Assets/Sprites/crateWood_side.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c8c9ea4c8c16441b4908818c1e675e86
+    m_Address: Assets/Sprites/barrelRed_side.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 955900a703b594d3d8256d5bd04b60c1, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 792f3258a43aa4df59f91d8e21a05b46, type: 2}
+    - {fileID: 11400000, guid: 9efd968461cec412d814662c37fc44f9, type: 2}

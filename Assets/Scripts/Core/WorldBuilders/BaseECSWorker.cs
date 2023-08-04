@@ -26,7 +26,7 @@ namespace Core.WorldBuilders
             }
             catch (Exception e)
             {
-                Console.Error.WriteLine(e);
+                UnityEngine.Debug.LogException(e);
             }
         }
 

@@ -25,7 +25,7 @@ namespace Core.ECSlogic.Systems
 
         private void CheckCompletedQuest()
         {
-            if (readOnlyGameModel.Value.GetCurrentQuest.HasValue)
+            if (readOnlyGameModel.Value.GetCurrentQuest.Value != null)
             {
                 if (readOnlyGameModel.Value.GetCurrentQuest.Value.IsCompleted())
                 {

@@ -8,7 +8,7 @@ namespace Core.ECSlogic.Systems
 {
     public class RestartSystem : IEcsRunSystem
     {
-        private readonly EcsCustomInject<WorldModel> worldModel;
+        private readonly EcsCustomInject<EcsWorldModel> worldModel;
         private readonly EcsCustomInject<MapElementsService> mapElementsService;
 
         private readonly EcsPoolInject<CreatePlayer> createPlayerPool;

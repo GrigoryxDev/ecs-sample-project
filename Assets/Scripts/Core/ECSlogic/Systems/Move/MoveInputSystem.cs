@@ -13,26 +13,39 @@ namespace Core.ECSlogic.Systems
 
         private readonly EcsPoolInject<ExpiredTag> expiredTagPool;
         private readonly EcsPoolInject<MovePathTarget> movePathTargetPool;
+        private readonly EcsPoolInject<MoveTarget> moveTargetPool;
+
         private readonly EcsCustomInject<IPathfindingService> pathfindingService;
+        private readonly EcsCustomInject<IMovablePositionsService> movePositionsService;
 
         public void Run(IEcsSystems systems)
         {
-            foreach (var item in inputMoveTargets.Value)
+            foreach (var inputMoveTargetEntity in inputMoveTargets.Value)
             {
-                var inputMoveTarget = inputMoveTargets.Pools.Inc1.Get(item);
+                var inputMoveTarget = inputMoveTargets.Pools.Inc1.Get(inputMoveTargetEntity);
 
                 if (playerTags.Value.TryGetAnyEntity(out var playerEntity))
                 {
                     var playerMapElement = playerTags.Pools.Inc2.Get(playerEntity);
                     var path = pathfindingService.Value.GetPath(playerMapElement.GridPosition,
                      inputMoveTarget.GridPosition);
+                    
+                    if (path.Count == 0)
+                    {
+                        continue;
+                    }
 
                     ref var movePathTarget = ref movePathTargetPool.Value.GetOrAdd(playerEntity);
                     movePathTarget.Path = path;
                     movePathTarget.CurrentIndex = 0;
+
+                    ref var moveTarget = ref moveTargetPool.Value.GetOrAdd(playerEntity);
+                    moveTarget.GridPosition = movePathTarget.Path[movePathTarget.CurrentIndex];
+                    moveTarget.WorldPosition = movePositionsService.Value.GetWorldPosition(moveTarget.GridPosition);
+                    moveTarget.CurrentT = 0f;
                 }
 
-                expiredTagPool.Value.GetOrAdd(item);
+                expiredTagPool.Value.GetOrAdd(inputMoveTargetEntity);
             }
         }
     }

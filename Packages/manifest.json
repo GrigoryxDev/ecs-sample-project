@@ -4,6 +4,7 @@
     "com.leopotam.ecslite": "https://github.com/Leopotam/ecslite.git",
     "com.neuecc.unirx": "https://github.com/neuecc/UniRx.git?path=Assets/Plugins/UniRx/Scripts",
     "com.leopotam.ecslite.di": "https://github.com/Leopotam/ecslite-di.git",
+    "com.leopotam.ecslite.unityeditor": "https://github.com/Leopotam/ecslite-unityeditor.git",
     "com.unity.addressables": "1.19.19",
     "com.unity.feature.2d": "1.0.0",
     "com.unity.ide.vscode": "1.2.5",

@@ -7,7 +7,7 @@ namespace Core.ECSGameView.Systems
 {
     public class DestroyExpiredViewSystem : IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<ViewMapElement>, Exc<ExpiredTag>> movableMapElements;
+        private readonly EcsFilterInject<Inc<ViewMapElement, ExpiredTag>> movableMapElements;
 
         public void Run(IEcsSystems systems)
         {

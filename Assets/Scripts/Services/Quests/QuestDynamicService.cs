@@ -11,12 +11,12 @@ public interface IQuestDynamicService
 public class QuestDynamicService : IQuestDynamicService
 {
     private readonly IQuestStorageService questStorageService;
-    private readonly IReadOnlyGameModel gameModel;
+    private readonly GameModel gameModel;
     private readonly IRandomService randomService;
 
     private readonly QuestAnalyzerHolder analyzerHolder;
 
-    public QuestDynamicService(IQuestStorageService questStorageService, IReadOnlyGameModel gameModel, IRandomService randomService)
+    public QuestDynamicService(IQuestStorageService questStorageService, GameModel gameModel, IRandomService randomService)
     {
         this.questStorageService = questStorageService;
         this.gameModel = gameModel;
@@ -27,14 +27,14 @@ public class QuestDynamicService : IQuestDynamicService
         gameModel.GetCollectedElements.ObserveAdd().Subscribe(
         added =>
         {
-            var questParams = new QuestAnalyzeParams(added.Key, added.Value);
+            var questParams = new CollectElementParams(added.Key, added.Value);
             analyzerHolder.AnalyzeActiveQuests(GetCurrentQuests(), questParams);
         });
 
         gameModel.GetCollectedElements.ObserveReplace().Subscribe(
         added =>
         {
-            var questParams = new QuestAnalyzeParams(added.Key, added.NewValue - added.OldValue);
+            var questParams = new CollectElementParams(added.Key, added.NewValue - added.OldValue);
             analyzerHolder.AnalyzeActiveQuests(GetCurrentQuests(), questParams);
         });
     }
@@ -49,13 +49,14 @@ public class QuestDynamicService : IQuestDynamicService
         questStorageService.GetQuestModel(nextRndQuestId, out var nextQuest);
         nextQuest.ResetQuest();
 
+        gameModel.CurrentQuest.Value = nextQuest;
         return nextQuest;
     }
 
     private List<int> GetCurrentQuests()
     {
         List<int> currentQuests = new();
-        if (gameModel.GetCurrentQuest.HasValue)
+        if (gameModel.GetCurrentQuest.Value != null)
         {
             QuestBaseModel currentQuest = gameModel.GetCurrentQuest.Value;
             currentQuests.Add(currentQuest.QuestID);

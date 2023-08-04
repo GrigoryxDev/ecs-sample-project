@@ -1,4 +1,5 @@
 ﻿using Core.ECSGameView.Components;
+using Core.ECSGameView.Helpers;
 using Core.ECSGameView.Models;
 using Core.ECSlogic.Components;
 using Leopotam.EcsLite;
@@ -8,7 +9,7 @@ namespace Core.ECSGameView.Systems
 {
     public class CreatePlayerSystem : IEcsRunSystem
     {
-        private readonly EcsFilterInject<Inc<PlayerTag>, Exc<ExpiredTag>> playerFilter;
+        private readonly EcsFilterInject<Inc<PlayerTag, MapElement>, Exc<ExpiredTag>> playerFilter;
         private readonly EcsPoolInject<ViewMapElement> viewMapElementPool;
         private readonly EcsCustomInject<InitView> initViewServices;
 
@@ -21,6 +22,10 @@ namespace Core.ECSGameView.Systems
                 {
                     ref var viewMapElement = ref viewMapElementPool.Value.Add(item);
                     var viewElment = initViewServices.Value.GetMapElementsFactory.GetPlayerFromPool();
+
+                    var mapElement = playerFilter.Pools.Inc2.Get(item);
+                    viewElment.UpdateWorldPosition(mapElement.WorldPosition.AdaptToVector2());
+
                     viewMapElement.MapView = viewElment;
                 }
             }

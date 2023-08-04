@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Core.ECSlogic.Interfaces.Services
 {
-    public interface IRandomService : IInitService
+    public interface IRandomService
     {
         Random GetRandom();
         bool TryProc(float chance);

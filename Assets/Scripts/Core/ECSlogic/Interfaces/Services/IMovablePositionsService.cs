@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Numerics;
+using Core.ECSGameView.Services;
 using Core.ECSlogic.Extensions;
 
 namespace Core.ECSlogic.Interfaces.Services

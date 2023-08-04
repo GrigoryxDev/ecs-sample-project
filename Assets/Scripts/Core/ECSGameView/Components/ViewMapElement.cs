@@ -1,4 +1,4 @@
-﻿using Core.ECSGameView.UnityComponents;
+﻿using Core.ECSGameView.UnityComponentsBridge;
 
 namespace Core.ECSGameView.Components
 {

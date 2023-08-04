@@ -10,10 +10,12 @@ namespace Core.ECSGameView
     public class ViewECSWorker : BaseECSWorker
     {
         private readonly InitView initServices;
+        private readonly IReadOnlyGameModel readOnlyGameModel;
 
-        public ViewECSWorker(InitView initServices)
+        public ViewECSWorker(InitView initServices,IReadOnlyGameModel readOnlyGameModel)
         {
             this.initServices = initServices;
+            this.readOnlyGameModel=readOnlyGameModel;
         }
 
 
@@ -29,7 +31,7 @@ namespace Core.ECSGameView
 
                .Add(new DestroyExpiredViewSystem())
 
-               .Inject(initServices)
+               .Inject(initServices, readOnlyGameModel)
                .Init();
         }
     }

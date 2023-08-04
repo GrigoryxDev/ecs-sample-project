@@ -7,11 +7,6 @@ public class RandomService : IRandomService
 {
     private readonly Random random = new Random(321);
 
-    public void Init()
-    {
-        //Could be Random init by special seed
-    }
-
     public Random GetRandom() => random;
 
     public bool TryProc(float chance)

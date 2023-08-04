@@ -12,7 +12,8 @@ namespace Core.ECSGameView.Systems
         private readonly EcsPoolInject<InputMoveTarget> inputMoveTargetPool;
         private readonly EcsWorldInject world;
         private readonly EcsCustomInject<InitView> initViewServices;
-        
+        private readonly EcsCustomInject<IReadOnlyGameModel> readOnlyGameModel;
+
         private Grid grid;
         private Camera camera;
 
@@ -24,17 +25,20 @@ namespace Core.ECSGameView.Systems
 
         public void Run(IEcsSystems systems)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (readOnlyGameModel.Value.GetState.Value == GameStates.Game)
             {
-                Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Ray ray = camera.ScreenPointToRay(Input.mousePosition);
 
-                Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
-                Vector3Int position = grid.WorldToCell(worldPoint);
+                    Vector3 worldPoint = ray.GetPoint(-ray.origin.z / ray.direction.z);
+                    Vector3Int position = grid.WorldToCell(worldPoint);
 
-                var entity = world.Value.NewEntity();
-                ref var inputMoveTarget = ref inputMoveTargetPool.Value.Add(entity);
+                    var entity = world.Value.NewEntity();
+                    ref var inputMoveTarget = ref inputMoveTargetPool.Value.Add(entity);
 
-                inputMoveTarget.GridPosition = ((Vector2Int)position).AdaptToExtensionVector2Int();
+                    inputMoveTarget.GridPosition = ((Vector2Int)position).AdaptToExtensionVector2Int();
+                }
             }
         }
     }
